@@ -16,11 +16,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private LoanRepository loanRepository;
 
-	@Override
-	public Customer findByAccountNo(long accountNo) {
-		return repository.findByAccountNo(accountNo);
-	}
-
 	public Customer openCustomerAccount(Customer customer) {
 		
 		return repository.save(customer);

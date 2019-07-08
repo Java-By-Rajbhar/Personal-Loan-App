@@ -43,17 +43,19 @@ public class BankOfficerControllerTest {
 	}
 	@Test
 	public void approvePersonalLoanTest() throws Exception {
-		Customer customer  =  new Customer();
+		//Customer customer  =  new Customer();
 		long accNo=2;
-		customer.setAccountNo(accNo);
+		String officerType = "officer";
+		long loanId=2;
+		/*customer.setAccountNo(accNo);
 		customer.setAge(30);
 		customer.setCreditScore(1000);
-		customer.setWorkExprience(3);
-		Mockito.when(bankOfficerServiceImpl.approvePersonalLoan(Mockito.anyLong())).thenReturn("loan approve");
+		customer.setWorkExprience(3);*/
+		Mockito.when(bankOfficerServiceImpl.approvePersonalLoan(Mockito.anyLong(),Mockito.anyString(),Mockito.anyLong())).thenReturn("loan approve");
 		this.mockMvc.perform(
 				get("/bank/officer/approveloan/{accountNo}",accNo).contentType(MediaType.APPLICATION_JSON).content(asJsonString(accNo)))
 				.andReturn();
-		String str = bankOfficerController.approvePersonalLoan(accNo);
+		String str = bankOfficerController.approvePersonalLoan(officerType,accNo,loanId);
 		assertEquals("loan approve", str);
 		
 	}
@@ -61,15 +63,16 @@ public class BankOfficerControllerTest {
 	public void deleteRejectedPersonalLoanTest() throws Exception {
 		Customer customer  =  new Customer();
 		long accNo=2;
+		String officerType = "manager";
 		customer.setAccountNo(accNo);
 		customer.setAge(30);
 		customer.setCreditScore(1000);
 		customer.setWorkExprience(3);
-		Mockito.when(bankOfficerServiceImpl.deleteRejectedPersonalLoan(Mockito.anyLong())).thenReturn("loan deleted");
+		Mockito.when(bankOfficerServiceImpl.deleteRejectedPersonalLoan(Mockito.anyLong(),Mockito.anyString())).thenReturn("loan deleted");
 		this.mockMvc.perform(
 				delete("/bank/officer/rejectloan/{accountNo}",accNo).contentType(MediaType.APPLICATION_JSON).content(asJsonString(accNo)))
 				.andReturn();
-		String str = bankOfficerController.deleteRejectedPersonalLoan(accNo);
+		String str = bankOfficerController.deleteRejectedPersonalLoan(officerType,accNo);
 		assertEquals("loan deleted", str);
 		
 	}

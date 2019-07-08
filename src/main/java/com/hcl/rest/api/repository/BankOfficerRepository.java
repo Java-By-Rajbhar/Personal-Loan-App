@@ -7,6 +7,8 @@ import com.hcl.rest.api.entity.BankOfficer;
 
 @Repository
 public interface BankOfficerRepository extends JpaRepository<BankOfficer, Integer> {
+	
+	public BankOfficer findByOfficerType(String officerType);
 
 	
 }

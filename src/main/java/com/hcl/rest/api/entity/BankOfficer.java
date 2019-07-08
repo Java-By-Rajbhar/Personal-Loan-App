@@ -18,5 +18,5 @@ public class BankOfficer {
 	@GeneratedValue
 	private int officerId;
 	private String name;
-	private String level;
+	private String officerType;
 }
